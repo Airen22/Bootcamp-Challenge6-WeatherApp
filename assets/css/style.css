@@ -1,0 +1,17 @@
+header {
+    background-color: rgba(28, 28, 110, 0.425);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center;
+    font-size: 2rem;
+    padding: .5rem;
+}
+
+.search-container {
+    margin: 1rem;
+    padding: .5rem;
+}
+
+.history-container {
+    margin: 1rem;
+    padding: .5rem;
+}

@@ -4,11 +4,110 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Weather App</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel='stylesheet' href="./assets/css/reset.css"/>
     <link rel='stylesheet' href="./assets/css/style.css"/>
 </head>
+
+<header>
+    <h1>WEATHER DASHBOARD</h1>
+</header>
+
 <body>
+    <div class = "col-3 border border-dark-subtle rounded search-container">
+        <h2>Search for City</h2>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+        </div>
+        <div class="d-grid gap-2">
+            <button class="btn btn-primary" type="button">Search</button>
+          </div>
+    </div>
+
+    <div class = "col-3 border border-dark-subtle rounded history-container">
+        <h2>Search History:</h2>
+        <ul class = "search-history">
+
+        </ul>
+    </div>
+
+    <div class="col-9 card" style="width: 18rem;">
+        <div class="card-header" id="featured">
+          Featured
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item" id = "temp">Temp:</li>
+          <li class="list-group-item" id="wind">Wind:</li>
+          <li class="list-group-item" id="humidity">Humidity:</li>
+        </ul>
+    </div>
     
+    <div class="container text-left forecast">
+        <div class="row">
+          <div class="col">
+            <div class="col-9 card" style="width: 10rem;">
+                <div class="card-header" id="day1">
+                  Day 1
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item" id = "temp">Temp:</li>
+                  <li class="list-group-item" id="wind">Wind:</li>
+                  <li class="list-group-item" id="humidity">Humidity:</li>
+                </ul>
+            </div>
+          </div>
+          <div class="col">
+            <div class="col-9 card" style="width: 10rem;">
+                <div class="card-header" id="day2">
+                  Day 2
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item" id = "temp">Temp:</li>
+                  <li class="list-group-item" id="wind">Wind:</li>
+                  <li class="list-group-item" id="humidity">Humidity:</li>
+                </ul>
+            </div>          </div>
+          <div class="col">
+            <div class="col-9 card" style="width: 10rem;">
+                <div class="card-header" id="day3">
+                  Day 3
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item" id = "temp">Temp:</li>
+                  <li class="list-group-item" id="wind">Wind:</li>
+                  <li class="list-group-item" id="humidity">Humidity:</li>
+                </ul>
+            </div>          </div>
+          <div class="col">
+            <div class="col-9 card" style="width: 10rem;">
+                <div class="card-header" id="day4">
+                  Day 4
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item" id = "temp">Temp:</li>
+                  <li class="list-group-item" id="wind">Wind:</li>
+                  <li class="list-group-item" id="humidity">Humidity:</li>
+                </ul>
+            </div>          </div>
+          <div class="col">
+            <div class="col-9 card" style="width: 10rem;">
+                <div class="card-header" id="day5">
+                  Day 5
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item" id = "temp">Temp:</li>
+                  <li class="list-group-item" id="wind">Wind:</li>
+                  <li class="list-group-item" id="humidity">Humidity:</li>
+                </ul>
+            </div>          </div>
+        </div>
+      </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+    <script src="./assets/js/script.js"></script>
 </body>
 </html>
