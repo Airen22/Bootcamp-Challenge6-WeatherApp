@@ -15,38 +15,37 @@
 </header>
 
 <body>
-    <div class = "col-3 border border-dark-subtle rounded search-container">
+
+  <div class = "flex-row align-start align-stretch-md align-content-start align-content-stretch-md min-100-vh">
+    <aside class = "col-12 col-md-3 bg-light p-3">
+      <div>
         <h2>Search for City</h2>
-        <div class="input-group mb-3">
-            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-        </div>
-        <div class="d-grid gap-2">
-            <button class="btn btn-primary" type="button">Search</button>
-          </div>
-    </div>
+        <input type="text" class="input-group mb-3 form-control search-term" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+        <button class="d-grid gap-2 btn btn-primary search-btn" type="button">Search</button>
+      </div>
 
-    <div class = "col-3 border border-dark-subtle rounded history-container">
+      <div class = "mb-3 border border-dark-subtle rounded history">
         <h2>Search History:</h2>
-        <ul class = "search-history">
+        <ul class = "search-history"></ul>
+      </div>
+    </aside>
 
-        </ul>
-    </div>
-
-    <div class="col-9 card" style="width: 18rem;">
+    <main class = "col-12 col-md-9 p-3 ">
+      <div class="col-9 card city" >
         <div class="card-header" id="featured">
-          Featured
+          City: 
         </div>
         <ul class="list-group list-group-flush">
           <li class="list-group-item" id = "temp">Temp:</li>
           <li class="list-group-item" id="wind">Wind:</li>
           <li class="list-group-item" id="humidity">Humidity:</li>
         </ul>
-    </div>
-    
-    <div class="container text-left forecast">
+      </div>
+
+      <div>
         <div class="row">
           <div class="col">
-            <div class="col-9 card" style="width: 10rem;">
+            <div class="col-12 card" style="width: 10rem;">
                 <div class="card-header" id="day1">
                   Day 1
                 </div>
@@ -58,7 +57,7 @@
             </div>
           </div>
           <div class="col">
-            <div class="col-9 card" style="width: 10rem;">
+            <div class="col-12 card" style="width: 10rem;">
                 <div class="card-header" id="day2">
                   Day 2
                 </div>
@@ -69,7 +68,7 @@
                 </ul>
             </div>          </div>
           <div class="col">
-            <div class="col-9 card" style="width: 10rem;">
+            <div class="col-12 card" style="width: 10rem;">
                 <div class="card-header" id="day3">
                   Day 3
                 </div>
@@ -80,7 +79,7 @@
                 </ul>
             </div>          </div>
           <div class="col">
-            <div class="col-9 card" style="width: 10rem;">
+            <div class="col-12 card" style="width: 10rem;">
                 <div class="card-header" id="day4">
                   Day 4
                 </div>
@@ -91,7 +90,7 @@
                 </ul>
             </div>          </div>
           <div class="col">
-            <div class="col-9 card" style="width: 10rem;">
+            <div class="col-12 card" style="width: 10rem;">
                 <div class="card-header" id="day5">
                   Day 5
                 </div>
@@ -100,12 +99,14 @@
                   <li class="list-group-item" id="wind">Wind:</li>
                   <li class="list-group-item" id="humidity">Humidity:</li>
                 </ul>
-            </div>          </div>
+            </div>          
+          </div>
         </div>
-      </div>
+      </div> 
+    </main>
 
 
-
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 
     <script src="./assets/js/script.js"></script>

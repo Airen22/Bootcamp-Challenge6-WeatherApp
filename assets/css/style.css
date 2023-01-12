@@ -3,15 +3,30 @@ header {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     text-align: center;
     font-size: 2rem;
-    padding: .5rem;
+    padding: 1rem;
+    height: 5rem;
 }
 
-.search-container {
+.search {
     margin: 1rem;
     padding: .5rem;
 }
 
-.history-container {
+.history {
     margin: 1rem;
     padding: .5rem;
+}
+
+.city {
+    margin: 1rem;
+    padding: .5rem;
+}
+
+.forecast {
+    margin: 1rem;
+    padding: .5rem;
+}
+
+.card {
+    margin: 1rem;
 }
