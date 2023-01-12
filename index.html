@@ -17,12 +17,14 @@
 <body>
 
   <div class = "flex-row align-start align-stretch-md align-content-start align-content-stretch-md min-100-vh">
-    <aside class = "col-12 col-md-3 bg-light p-3">
-      <div>
-        <h2>Search for City</h2>
-        <input type="text" class="input-group mb-3 form-control search-term" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-        <button class="d-grid gap-2 btn btn-primary search-btn" type="button">Search</button>
+    <aside class = "col-12 col-md-3 col-lg-5 bg-light p-3">
+      <div class="input-group mb-3">
+        <input type="text" class=" form-control search-term" aria-label="Text input with dropdown button">
+        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">State</button>
+        <ul class="dropdown-menu dropdown-menu-end">
+        </ul>
       </div>
+      <button class="d-grid gap-2  btn btn-primary search-btn" type="button">Search</button>
 
       <div class = "mb-3 border border-dark-subtle rounded history">
         <h2>Search History:</h2>

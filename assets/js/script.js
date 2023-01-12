@@ -3,12 +3,6 @@ var geoUrl = 'http://api.openweathermap.org/geo/1.0/direct';
 var weatherUrl = 'http://api.openweathermap.org/data/2.5/forecast';
 var storedSearchTerm = localStorage.getItem("Search Term");
 
-// var searchBtn = $('.search-btn')
-// searchBtn.on('click', setGeoQuery);
-
-// function setGeoQuery (event) {
-//     if (event)
-// }
 
 $(".search-btn").on("click", function (event){
     var searchTerm = $(this).prev().val();
@@ -27,3 +21,16 @@ $(".search-btn").on("click", function (event){
     var searchLat = data.lat;
    console.log(searchLat)
   }
+
+
+  var states = [
+    'Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Ohio','Oklahoma','Oregon','Pennsylvania','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming'
+    ]
+
+    var stateList = $('.dropdown-menu')
+    $.each(states, function(i) {
+        $('<li>')
+        .addClass('dropdown-item')
+        .text(states[i])
+        .appendTo(stateList);
+    })
