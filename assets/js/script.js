@@ -31,6 +31,13 @@ $(".search-btn").on("click", function (event){
     $.each(states, function(i) {
         $('<li>')
         .addClass('dropdown-item')
+        .attr('id', states[i])
         .text(states[i])
         .appendTo(stateList);
+    })
+
+    $('.dropdown-item').on('click', function () {
+        var selectedState = $(this).attr('id');
+        localStorage.setItem("State", selectedState)
+
     })
