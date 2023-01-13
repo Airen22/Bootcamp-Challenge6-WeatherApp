@@ -6,6 +6,10 @@ header {
     padding: 1rem;
     height: 5rem;
 }
+.dropdown-menu{
+       height: 20rem;
+       overflow-y: auto;
+    }
 
 .search {
     margin: 1rem;
