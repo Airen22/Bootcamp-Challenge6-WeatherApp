@@ -28,8 +28,11 @@ function pullEntry(event) {
     var storedSearchTerm = localStorage.getItem("Search Term");
     var storedState = localStorage.getItem("State");
     localStorage.setItem("Search Term", searchTerm);
+    var history = $("<button>")
+    history.attr("id", searchTerm).attr("class", "d-grid gap-2  btn btn-secondary  history-btn").text(searchTerm);
+    $(".search-history").append(history)
     featuredContainer.empty();
-    forecastContainer.empty()
+    forecastContainer.empty();
     requestGeoCode(storedSearchTerm);
 
 };
@@ -67,6 +70,9 @@ function requestCurrent (city, state) {
             var tempEl = $('<li>');
             var windEl = $('<li>');
             var humidityEl = $('<li>');
+            var iconEl = $('<img>')
+            var iconId = data.weather[0].icon;
+            var iconUrl =  "http://openweathermap.org/img/wn/" + iconId + "@2x.png";
             card.attr("class", "col-9 card city");
             cityEl.attr("class", "card-header");
             cityEl.attr("id", "featured");
@@ -74,9 +80,10 @@ function requestCurrent (city, state) {
             tempEl.attr("class", "list-group-item");
             windEl.attr("class", "list-group-item");
             humidityEl.attr("class", "list-group-item");
+            iconEl.attr("src", iconUrl)
             featuredContainer.append(card);
             card.append(cityEl);
-            cityEl.append(city + ", " + state);
+            cityEl.append(city + ", " + state, iconEl);
             card.append(content);
             content.append(tempEl)
             tempEl.text("Temp: " + currentTemp + "F");
@@ -143,7 +150,9 @@ function requestForecast(lat, long) {
         })
 }
 
+function searchHistory() {
 
+}
 
 
 
