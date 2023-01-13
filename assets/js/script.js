@@ -1,23 +1,46 @@
+var states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
 var key = "2e72e53f481f6b9de8ec80bdf19fe4dd"
 var geoUrl = 'http://api.openweathermap.org/geo/1.0/direct';
 var weatherUrl = 'http://api.openweathermap.org/data/2.5/';
-var storedSearchTerm = localStorage.getItem("Search Term");
-var storedState = localStorage.getItem("State");
+
 var featuredContainer = $('#featured');
 var forecastContainer = $('#forecast');
 
+var stateList = $('.dropdown-menu')
+$.each(states, function (i) {
+    $('<li>')
+        .addClass('dropdown-item')
+        .attr('id', states[i])
+        .text(states[i])
+        .appendTo(stateList);
+})
 
+$('.dropdown-item').on('click', function () {
+    var selectedState = $(this).attr('id');
+    $(".dropdown-toggle").text(selectedState)
+    localStorage.setItem("State", selectedState)
+
+})
 // not running current search it's running what was previously in local storage
-$(".search-btn").on("click", function (event) {
+$(".search-btn").on("click", pullEntry);
+function pullEntry(event) {
     var searchTerm = $(".search-term").val();
+    var storedSearchTerm = localStorage.getItem("Search Term");
+    var storedState = localStorage.getItem("State");
     localStorage.setItem("Search Term", searchTerm);
+    featuredContainer.empty();
+    forecastContainer.empty()
+    requestGeoCode(storedSearchTerm, storedState);
 
+};
+    
+function requestGeoCode (storedSearchTerm, storedState) {
     fetch(geoUrl + "?q=" + storedSearchTerm + "," + storedState + ",US&appid=" + key)
         .then((response) =>
             response.json())
 
         .then((data) => {
-            console.log("geoCodeData:", data);
+            console.log(data);
             var long = data[0].lon;
             var lat = data[0].lat;
             var city = data[0].name;
@@ -25,7 +48,7 @@ $(".search-btn").on("click", function (event) {
             requestForecast(lat, long)
             requestCurrent(city,state)
         })
-})
+}
 
 function requestCurrent (city, state) {
     fetch(weatherUrl + "weather?appid=" + key + "&q=" + city + "," + state + ",US&units=imperial")
@@ -33,7 +56,7 @@ function requestCurrent (city, state) {
             response.json())
 
         .then((data) => {
-            console.log("currentWeatherData:", data);
+            console.log(data);
             
             var currentTemp = data.main.temp;
             var currentWind = data.wind.speed;
@@ -74,7 +97,7 @@ function requestForecast(lat, long) {
             response.json())
 
         .then((data) => {
-            console.log("forecastData:" , data);
+            console.log(data);
             var daysIndex = [0, 8, 16, 24, 32]
             for (var i = 0; i < daysIndex.length; i++) {
                 var forecastArr = data.list[daysIndex[i]];
@@ -85,7 +108,8 @@ function requestForecast(lat, long) {
                 var windEl = $('<li>');
                 var humidityEl = $('<li>');
                 var day = $('<h3>');
-                var date = forecastArr.dt_txt;
+                var unix = forecastArr.dt_txt
+                var date = new Date(unix).toDateString();
                 var temp = forecastArr.main.temp_min + " - " + forecastArr.main.temp_max;
                 var wind = forecastArr.wind.speed;
                 var humidity = forecastArr.main.humidity;
@@ -114,23 +138,9 @@ function requestForecast(lat, long) {
         })
 }
 
-var states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming']
 
-var stateList = $('.dropdown-menu')
-$.each(states, function (i) {
-    $('<li>')
-        .addClass('dropdown-item')
-        .attr('id', states[i])
-        .text(states[i])
-        .appendTo(stateList);
-})
 
-$('.dropdown-item').on('click', function () {
-    var selectedState = $(this).attr('id');
-    $(".dropdown-toggle").text(selectedState)
-    localStorage.setItem("State", selectedState)
 
-})
 
 // eventually for search history?
     // var currentSearch = searchTerm + ", " + selectedState
