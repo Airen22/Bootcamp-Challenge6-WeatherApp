@@ -10,6 +10,9 @@ header {
 .card {
     border:solid, rgba(28, 28, 110, 0.425);
     width: auto;
+    background-color: rgba(28, 28, 110, 0.425);
+    padding: .5rem;
+    height: auto;
 }
 .dropdown-menu{
        height: 20rem;
