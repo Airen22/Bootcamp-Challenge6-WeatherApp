@@ -1,4 +1,4 @@
-// var states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
+var states = ['AL','AK','AZ','AR','CA','CO','CT','DE','FL','GA','HI','ID','IL','IN','IA','KS','KY','LA','ME','MD','MA','MI','MN','MS','MO','MT','NE','NV','NH','NJ','NM','NY','NC','ND','OH','OK','OR','PA','RI','SC','SD','TN','TX','UT','VT','VA','WA','WV','WI','WY'];
 var key = "2e72e53f481f6b9de8ec80bdf19fe4dd"
 var geoUrl = 'http://api.openweathermap.org/geo/1.0/direct';
 var weatherUrl = 'http://api.openweathermap.org/data/2.5/';
@@ -6,31 +6,33 @@ var weatherUrl = 'http://api.openweathermap.org/data/2.5/';
 var featuredContainer = $('#featured');
 var forecastContainer = $('#forecast');
 
-// var stateList = $('.dropdown-menu')
-// $.each(states, function (i) {
-//     $('<li>')
-//         .addClass('dropdown-item')
-//         .attr('id', states[i])
-//         .text(states[i])
-//         .appendTo(stateList);
-// })
+var stateList = $('.dropdown-menu')
+$.each(states, function (i) {
+    $('<li>')
+        .addClass('dropdown-item')
+        .attr('id', states[i])
+        .text(states[i])
+        .appendTo(stateList);
+})
 
-// $('.dropdown-item').on('click', function () {
-//     var selectedState = $(this).attr('id');
-//     $(".dropdown-toggle").text(selectedState)
-//     localStorage.setItem("State", selectedState)
+$('.dropdown-item').on('click', function () {
+    var selectedState = $(this).attr('id');
+    $(".dropdown-toggle").text(selectedState)
+    localStorage.setItem("State", selectedState)
 
-// })
+})
 // not running current search it's running what was previously in local storage
 $(".search-btn").on("click", pullEntry);
-function pullEntry(event) {
+$(".search-history").on("click", function () {
+    var searchTerm = $(this).attr('id');
+    console.log(searchTerm);
+})
+async function pullEntry(event) {
     var searchTerm = $(".search-term").val();
     var storedSearchTerm = localStorage.getItem("Search Term");
     var storedState = localStorage.getItem("State");
-    localStorage.setItem("Search Term", searchTerm);
-    var history = $("<button>")
-    history.attr("id", searchTerm).attr("class", "d-grid gap-2  btn btn-secondary  history-btn").text(searchTerm);
-    $(".search-history").append(history)
+    console.log(searchTerm + ", " + storedState)
+    localStorage.setItem("Search Term", searchTerm + ", " + storedState);
     featuredContainer.empty();
     forecastContainer.empty();
     requestGeoCode(storedSearchTerm);
@@ -38,6 +40,7 @@ function pullEntry(event) {
 };
     
 function requestGeoCode (storedSearchTerm) {
+var history = $("<button>");
     fetch(geoUrl + "?q=" + storedSearchTerm + ",US&appid=" + key)
         .then((response) =>
             response.json())
@@ -50,7 +53,9 @@ function requestGeoCode (storedSearchTerm) {
             var state = data[0].state;
             requestForecast(lat, long)
             requestCurrent(city,state)
-        })
+        }).then(
+    history.attr("id", storedSearchTerm).attr("class", "d-grid gap-2  btn btn-secondary  history-btn").text(storedSearchTerm),
+    $(".search-history").append(history));
 }
 
 function requestCurrent (city, state) {
@@ -151,7 +156,9 @@ function requestForecast(lat, long) {
 }
 
 function searchHistory() {
-
+    var searchTerm = $(".search-term").val();
+    var storedSearchTerm = localStorage.getItem("Search Term");
+    var storedState = localStorage.getItem("State");
 }
 
 
